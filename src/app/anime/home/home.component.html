@@ -1,0 +1,39 @@
+<!-- <mat-toolbar color="primary">
+    <span>Card view demo</span>
+  </mat-toolbar> -->
+<section>
+    <div class="content">
+        <button style="color: white;" class="btn btn-secondary" (click)="toggleGridColumns()" fxHide.lt-md="fxHide.lt-md">
+            <span *ngIf="gridColumns === 5">Cuatro Columnas</span>
+            <span *ngIf="gridColumns === 4">Cinco Columnas</span>
+        </button>
+        <br><br>
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+            <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let a of animes">
+                <mat-card class="mat-elevation-z4 cardA" >
+                    <mat-card-header>
+                        <mat-card-title class="titulo text-center">{{ a.titles.en}}</mat-card-title>
+                    </mat-card-header>
+                    <img mat-card-image="mat-card-image imagen" [src]="a.cover_image">
+                        <mat-card-content class="">
+                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <Strong>Descripcion:</Strong> 
+                                </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                {{a.descriptions.en}}
+                            </mat-expansion-panel>
+                            <!-- <p><Strong>Descripcion: </Strong>{{a.descriptions.en}}</p> -->
+                            <br>
+                            <h4><Strong>Año: </Strong>{{a.season_year}}</h4>
+                            
+                        </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>
+   
