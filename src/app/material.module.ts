@@ -5,8 +5,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatExpansionModule } from '@angular/material/expansion';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -17,9 +17,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     FlexLayoutModule,
     MatToolbarModule,
     MatButtonModule,
-    MatExpansionModule,
+    MatListModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}

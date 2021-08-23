@@ -11,27 +11,28 @@ import { Anime } from '../../entidades/anime';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  anime: Anime = {} as Anime;
-  animes: any[] = [];
-
+  animes: Anime[] = [];
+  page: number = 0;
+  size: number = 100;
   constructor(
     private http: HttpClient,
     private activatedRoiuter: ActivatedRoute,
-    private router:Router
+    private router: Router
   ) {
     http
       .get<any>('https://api.aniapi.com/v1/anime/')
-      .pipe(map((data) => data.data.documents))
+      // .pipe(map((data) => data.data.documents))
       .subscribe((response) => {
-        this.animes = response;
+        this.page = response.current_page;
+        this.animes = response.data.documents;
       });
   }
 
   ngOnInit(): void {}
 
-  navigate(id:number){
+  navigate(id: number) {
     //do your any operations
     // this.router.navigate(['/detalle_anime/' + id]);
-    this.router.navigateByUrl("/detalle_anime/"+id);
-    }
+    this.router.navigateByUrl('/detalle_anime/' + id);
+  }
 }
