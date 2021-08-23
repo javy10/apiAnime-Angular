@@ -1,11 +1,33 @@
 video
-    width: 80%
+    width: 90%
     height: 30%
-    align-items: center
     margin: 0 auto
     display: block
+    //margin-top: 5px
     margin-bottom: 25px
 
-.cardA
-    margin-top: 20px
+.mat-card
+  border: 1px solid #54FA3E
+  margin-bottom: 2rem
+  margin-top: 25px
 
+.mat-card:hover
+  background-color: rgb(62, 62, 62)
+  color: white
+  cursor: pointer
+  transform: scale(1.05)
+  transition: all 0.7s ease
+  
+.mat-card-title
+  text-align: center
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+
+.mat-card img
+  object-fit: cover
+  height: 300px
+
+.mat-card-content 
+  height: 200px
+  overflow: auto
