@@ -6,5 +6,5 @@ export interface Anime {
     episodes_count: number;
     cover_image: string;
     banner_image: string;
-    genres: string;
+    genres: Array<string>;
 }

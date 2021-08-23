@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Anime } from '../../entidades/anime';
@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private activatedRoiuter: ActivatedRoute
+    private activatedRoiuter: ActivatedRoute,
+    private router:Router
   ) {
     http
       .get<any>('https://api.aniapi.com/v1/anime/')
@@ -27,4 +28,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  navigate(id:number){
+    //do your any operations
+    // this.router.navigate(['/detalle_anime/' + id]);
+    this.router.navigateByUrl("/detalle_anime/"+id);
+    }
 }
