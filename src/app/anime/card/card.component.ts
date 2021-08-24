@@ -11,4 +11,14 @@ export class CardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  description(): string {
+    const descriptions = this.anime.descriptions;
+    const validation = (text: string) =>
+      text == undefined || text == null || text === '';
+    if (!validation(descriptions.en)) return descriptions.en;
+    if (!validation(descriptions.jp)) return descriptions.jp;
+    if (!validation(descriptions.it)) return descriptions.it;
+    return '';
+  }
 }

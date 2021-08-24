@@ -1,12 +1,20 @@
 <div>
   <mat-paginator
-    [length]="size"
-    [pageSize]="page"
-    [pageSizeOptions]="[50, 75, 100]"
-    aria-label="Select page"
+    color="primary"
+    [length]="count"
+    [pageSizeOptions]="[10, 25, 50, 75, 100]"
+    (page)="getPaginatorData($event)"
   >
   </mat-paginator>
-  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div
+    *ngIf="loading"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    style="height: 85vh"
+  >
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <div *ngIf="!loading" fxLayout="row wrap" fxLayoutGap="16px grid">
     <div fxFlex="25%" fxFlex.xs="95%" fxFlex.sm="33%" *ngFor="let a of animes">
       <app-card [anime]="a"></app-card>
     </div>

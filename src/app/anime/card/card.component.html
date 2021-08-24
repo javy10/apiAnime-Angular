@@ -2,6 +2,6 @@
   <mat-card-title>{{ anime.titles.en }}</mat-card-title>
   <img mat-card-image [src]="anime.cover_image" [routerLink]="['/detalle_anime/']" />
   <mat-card-content>
-    <div [innerHtml]="anime.descriptions.en"></div>
+    <div [innerHtml]="description()"></div>
   </mat-card-content>
 </mat-card>
