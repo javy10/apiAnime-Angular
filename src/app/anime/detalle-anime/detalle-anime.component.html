@@ -1,27 +1,48 @@
-<div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="100%" fxFlex.xs="50%" fxFlex.sm="50%">
-        <mat-card class="mat-elevation-z4 cardA">
-            <mat-card-header>
-                <div mat-card-avatar="mat-card-avatar" class="example-header-image"></div>
-                <mat-card-title>Shiba Inu</mat-card-title>
-            </mat-card-header>
+<!-- <mat-grid-list cols="3" rowHeight="4:4" class="grid">
+    <mat-grid-tile>
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+            <div fxFlex="100%" fxFlex.xs="50%" fxFlex.sm="50%">
+                <mat-card class="mat-elevation-z4 cardA">
+                    <mat-card-header>
+                        <div mat-card-avatar="mat-card-avatar" class="example-header-image"></div>
+                        <mat-card-title>Shiba Inu</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="videoWrapper">
+                            <video src="https://api.aniapi.com/v1/proxy/https%3a%2f%2fcdn2.dreamsub.cc%2ffl%2fnaruto%2f208%2fSUB_ITA%2f720p%3ftoken%3dREBT0KGdreamsubpzx0Ba2qRAF6PlCkOdCyYYcdreamsubvnGqqLcZnSI%24OwO%24/dreamsub?host=cdn.dreamsub.cc&referrer=https%3a%2f%2fdreamsub.cc%2fanime%2fnaruto%2f208" 
+                                   controls="controls" loop="loop">
+                                Vídeo no es soportado...
+                            </video>
+                        </div>
+                        <p>
+                            Capitulo: 
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                  
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list> -->
 
-            <mat-card-content>
-                <div class="videoWrapper">
-                    <video src="https://api.aniapi.com/v1/proxy/https%3a%2f%2fcdn2.dreamsub.cc%2ffl%2fnaruto%2f208%2fSUB_ITA%2f720p%3ftoken%3dREBT0KGdreamsubpzx0Ba2qRAF6PlCkOdCyYYcdreamsubvnGqqLcZnSI%24OwO%24/dreamsub?host=cdn.dreamsub.cc&referrer=https%3a%2f%2fdreamsub.cc%2fanime%2fnaruto%2f208" controls="controls" autoplay="autoplay" loop="loop">
-                        Vídeo no es soportado...
-                    </video>
-                </div>
-                <p>
-                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                            bred for hunting.
-                </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <mat-paginator [length]="200" [pageSizeOptions]="[5, 10, 15]" aria-label="Select page">
-                </mat-paginator>
-            </mat-card-actions>
-        </mat-card>
+<mat-grid-list cols="3" rowHeight="4:4" class="grid">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="95%" fxFlex.sm="33%">
+            <mat-card>
+                <mat-card-title>Nombre del anime</mat-card-title>
+                <mat-card-content>
+                    <div>
+                        <video src="https://api.aniapi.com/v1/proxy/https%3a%2f%2fcdn2.dreamsub.cc%2ffl%2fnaruto%2f208%2fSUB_ITA%2f720p%3ftoken%3dREBT0KGdreamsubpzx0Ba2qRAF6PlCkOdCyYYcdreamsubvnGqqLcZnSI%24OwO%24/dreamsub?host=cdn.dreamsub.cc&referrer=https%3a%2f%2fdreamsub.cc%2fanime%2fnaruto%2f208" controls="controls" loop="loop">
+                            
+                        </video>
+                    </div>
+                    <p>
+                        Capitulo:
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
-</div>
+</mat-grid-list>

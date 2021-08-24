@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { Anime } from '../../entidades/anime';
+import { getData } from '../request';
 
 @Component({
   selector: 'app-home',
@@ -12,27 +13,47 @@ import { Anime } from '../../entidades/anime';
 })
 export class HomeComponent implements OnInit {
   animes: Anime[] = [];
-  page: number = 0;
-  size: number = 100;
+  count: number = 0;
+  loading: boolean = false;
   constructor(
     private http: HttpClient,
     private activatedRoiuter: ActivatedRoute,
     private router: Router
-  ) {
-    http
-      .get<any>('https://api.aniapi.com/v1/anime/')
-      // .pipe(map((data) => data.data.documents))
-      .subscribe((response) => {
-        this.page = response.current_page;
-        this.animes = response.data.documents;
-      });
-  }
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAnime();
+  }
 
   navigate(id: number) {
-    //do your any operations
-    // this.router.navigate(['/detalle_anime/' + id]);
     this.router.navigateByUrl('/detalle_anime/' + id);
   }
+
+  getAnime(
+    pageIndex: number = 0,
+    pageSize: number = 10,
+    title?: string,
+    year?: number,
+    genres?: string[]
+  ) {
+    this.loading = true;
+    let params = new HttpParams()
+      .set('page', pageIndex + 1)
+      .set('per_page', pageSize);
+    title && (params = params.set('title', title));
+    year && (params = params.set('year', year));
+    genres && (params = params.set('genres', genres.join(',')));
+    getData<Anime>(this.http, 'anime', params)
+      .then((data) => {
+        this.animes = data.list;
+        this.count = data.count;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+  getPaginatorData = (event: PageEvent): PageEvent => {
+    this.getAnime(event.pageIndex, event.pageSize);
+    return event;
+  };
 }

@@ -6,6 +6,8 @@ export interface Anime {
   };
   descriptions: {
     en: string;
+    jp: string;
+    it: string;
   };
   start_date: string;
   season_year: number;
