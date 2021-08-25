@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
   getPaginatorData = (event: PageEvent): PageEvent => {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.getAnime();
+    this.buscar();
     return event;
   };
 }
