@@ -1,10 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Anime } from '../../entidades/anime';
-import { getData } from '../request';
+import { getData, getGeneros } from '../request';
 
 @Component({
   selector: 'app-home',
@@ -12,36 +13,42 @@ import { getData } from '../request';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  animes: Anime[] = [];
-  count: number = 0;
-  loading: boolean = false;
-  constructor(
-    private http: HttpClient,
-    private activatedRoiuter: ActivatedRoute,
-    private router: Router
-  ) {}
+  group!: FormGroup;
+  generos!: string[];
+  animes!: Anime[];
+  count!: number;
+  loading!: boolean;
+  pageIndex: number = 0;
+  pageSize: number = 10;
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.getAnime();
+    this.group = new FormGroup({
+      title: new FormControl('', [Validators.max(12)]),
+      generos: new FormControl(),
+    });
+    getGeneros(this.http).subscribe((x) => {
+      x.sort();
+      this.generos = x;
+    });
   }
 
   navigate(id: number) {
     this.router.navigateByUrl('/detalle_anime/' + id);
   }
-
-  getAnime(
-    pageIndex: number = 0,
-    pageSize: number = 10,
-    title?: string,
-    year?: number,
-    genres?: string[]
-  ) {
+  buscar() {
+    const values = this.group.value;
+    console.log(this.group);
+    this.group.valid && this.getAnime(values.title, values.generos);
+  }
+  public getAnime(title?: string, genres?: string[]) {
     this.loading = true;
+    console.log(genres);
     let params = new HttpParams()
-      .set('page', pageIndex + 1)
-      .set('per_page', pageSize);
+      .set('page', this.pageIndex + 1)
+      .set('per_page', this.pageSize);
     title && (params = params.set('title', title));
-    year && (params = params.set('year', year));
     genres && (params = params.set('genres', genres.join(',')));
     getData<Anime>(this.http, 'anime', params)
       .then((data) => {
@@ -53,7 +60,9 @@ export class HomeComponent implements OnInit {
       });
   }
   getPaginatorData = (event: PageEvent): PageEvent => {
-    this.getAnime(event.pageIndex, event.pageSize);
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.getAnime();
     return event;
   };
 }

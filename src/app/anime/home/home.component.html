@@ -1,6 +1,27 @@
-<div>
+<div class="menu">
+  <form [formGroup]="group" fxLayoutAlign="space-around" (ngSubmit)="buscar()">
+    <div fxFlex="80%" fxLayoutAlign="flex-end">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input type="text" matInput formControlName="title" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Generos</mat-label>
+        <mat-select formControlName="generos" multiple>
+          <mat-option *ngFor="let genero of generos" [value]="genero">
+            {{ genero }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-fab color="primary">
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+</div>
+
+<div class="container">
   <mat-paginator
-    color="primary"
     [length]="count"
     [pageSizeOptions]="[10, 25, 50, 75, 100]"
     (page)="getPaginatorData($event)"
