@@ -25,6 +25,7 @@ export async function getData<T>(
     .toPromise();
   return data;
 }
+
 export function getGeneros(http: HttpClient): Observable<string[]> {
   return http
     .get<any>('https://api.aniapi.com/v1/resources/1.0/0')
