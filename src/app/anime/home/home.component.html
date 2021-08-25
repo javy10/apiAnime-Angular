@@ -1,11 +1,11 @@
 <div class="menu">
   <form [formGroup]="group" fxLayoutAlign="space-around" (ngSubmit)="buscar()">
     <div fxFlex="80%" fxLayoutAlign="flex-end">
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" color="primary">
         <mat-label>Title</mat-label>
         <input type="text" matInput formControlName="title" />
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" color="primary">
         <mat-label>Generos</mat-label>
         <mat-select formControlName="generos" multiple>
           <mat-option *ngFor="let genero of generos" [value]="genero">
@@ -14,7 +14,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <button mat-fab color="primary">
+    <button mat-fab color="accent">
       <mat-icon>search</mat-icon>
     </button>
   </form>
@@ -22,6 +22,7 @@
 
 <div class="container">
   <mat-paginator
+    color="accent"
     [length]="count"
     [pageSizeOptions]="[10, 25, 50, 75, 100]"
     (page)="getPaginatorData($event)"
@@ -33,7 +34,10 @@
     fxLayoutAlign="center center"
     style="height: 85vh"
   >
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    <mat-progress-spinner
+      color="accent"
+      mode="indeterminate"
+    ></mat-progress-spinner>
   </div>
   <div *ngIf="!loading" fxLayout="row wrap" fxLayoutGap="16px grid">
     <div fxFlex="25%" fxFlex.xs="95%" fxFlex.sm="33%" *ngFor="let a of animes">

@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import { Anime } from '../../entidades/anime';
 import { getData, getGeneros } from '../request';
 
@@ -25,7 +24,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getAnime();
     this.group = new FormGroup({
-      title: new FormControl('', [Validators.max(12)]),
+      title: new FormControl('', [Validators.maxLength(20)]),
       generos: new FormControl(),
     });
     getGeneros(this.http).subscribe((x) => {
@@ -39,7 +38,6 @@ export class HomeComponent implements OnInit {
   }
   buscar() {
     const values = this.group.value;
-    console.log(this.group);
     this.group.valid && this.getAnime(values.title, values.generos);
   }
   public getAnime(title?: string, genres?: string[]) {
@@ -47,7 +45,9 @@ export class HomeComponent implements OnInit {
     console.log(genres);
     let params = new HttpParams()
       .set('page', this.pageIndex + 1)
-      .set('per_page', this.pageSize);
+      .set('per_page', this.pageSize)
+      .set('sort_fields', 'start_date')
+      .set('sort_directions', '-1');
     title && (params = params.set('title', title));
     genres && (params = params.set('genres', genres.join(',')));
     getData<Anime>(this.http, 'anime', params)
