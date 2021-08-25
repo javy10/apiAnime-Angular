@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getAnime();
     this.group = new FormGroup({
-      title: new FormControl('', [Validators.max(12)]),
+      title: new FormControl('', [Validators.maxLength(12)]),
       generos: new FormControl(),
     });
     getGeneros(this.http).subscribe((x) => {
@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit {
   }
   buscar() {
     const values = this.group.value;
-    console.log(this.group);
     this.group.valid && this.getAnime(values.title, values.generos);
   }
   public getAnime(title?: string, genres?: string[]) {
