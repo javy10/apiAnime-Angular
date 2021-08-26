@@ -1,16 +1,15 @@
+@import '../../../styles.sass'
 .mat-card
   border: 1px solid #54FA3E
   margin-bottom: 2rem
   margin-top: 25px
 
 // .mat-card:hover
-//   background-color: rgb(62, 62, 62)
+//   background-color: map-get($my-palette-accent, 500)
 //   color: white
 //   cursor: pointer
 //   transform: scale(1.05)
 //   transition: all 0.7s ease
-
-
   
 .mat-card-title
   text-align: center
@@ -18,6 +17,14 @@
   overflow: hidden
   white-space: nowrap
 
+.mat-card video
+  object-fit: cover
+  height: 300px
+
+.mat-card-content 
+  height: 120px
+  overflow: auto
+  
 .mat-card video
   // object-fit: cover
   // height: 30%
@@ -27,9 +34,3 @@
   margin: 0 auto
   display: block
   margin-bottom: 25px
-
-.mat-card-content 
-  height: 120px
-  overflow: auto
-  
-
