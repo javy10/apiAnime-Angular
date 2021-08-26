@@ -27,7 +27,7 @@
     </mat-grid-tile>
 </mat-grid-list> -->
 
-<mat-grid-list cols="2" rowHeight="4:4" class="grid">
+<!-- <mat-grid-list cols="2" rowHeight="4:4" class="grid">
     <h1 class="text-center" style="color: white;">Capitulos</h1>
     <div class="container"  fxLayout="row wrap" fxLayoutGap="16px grid">
         <div  fxFlex="25%" fxFlex.xs="95%" fxFlex.sm="33%">
@@ -46,4 +46,20 @@
         </div>
 
     </div>
-</mat-grid-list>
+</mat-grid-list> -->
+
+<div class="container">
+    <div
+      *ngIf="loading"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      style="height: 85vh"
+    >
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <div *ngIf="!loading" fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%" fxFlex.xs="95%" fxFlex.sm="33%" *ngFor="let e of episodes">
+        <app-card-detalle [episode]="e"></app-card-detalle>
+      </div>
+    </div>
+  </div>

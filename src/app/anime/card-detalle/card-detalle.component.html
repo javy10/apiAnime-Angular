@@ -1,0 +1,10 @@
+<mat-card >
+    <mat-card-title>{{ episode.title }}</mat-card-title>
+    <div>
+        <video [src]="episode.video" controls="controls" loop="loop">
+        </video>
+    </div>
+    <mat-card-content>
+      <Strong>Capitulo: {{episode.number}} </Strong>
+    </mat-card-content>
+</mat-card>

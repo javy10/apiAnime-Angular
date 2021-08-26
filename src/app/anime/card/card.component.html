@@ -3,7 +3,7 @@
   <img
     mat-card-image
     [src]="anime.cover_image"
-    [routerLink]="['/detalle_anime/']"
+    [routerLink]="['/detalle_anime/', anime.id]"
   />
   <mat-card-content>
     <div [innerHtml]="description()"></div>

@@ -7,7 +7,7 @@ import { HomeComponent } from './anime/home/home.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'detalle_anime', component: DetalleAnimeComponent },
+  { path: 'detalle_anime/:id', component: DetalleAnimeComponent },
 ];
 
 @NgModule({
