@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import { Anime } from '../../entidades/anime';
 import { getData, getGeneros } from '../request';
 
@@ -47,7 +46,9 @@ export class HomeComponent implements OnInit {
     
     let params = new HttpParams()
       .set('page', this.pageIndex + 1)
-      .set('per_page', this.pageSize);
+      .set('per_page', this.pageSize)
+      .set('sort_fields', 'start_date')
+      .set('sort_directions', '-1');
     title && (params = params.set('title', title));
     genres && (params = params.set('genres', genres.join(',')));
     getData<Anime>(this.http, 'anime', params)
