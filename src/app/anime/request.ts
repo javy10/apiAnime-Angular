@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,9 +12,14 @@ export async function getData<T>(
   path: string,
   params?: HttpParams
 ): Promise<send<T>> {
+  const headers = new HttpHeaders().set(
+    'Authorization',
+    `Bearer ${localStorage.getItem('token')}`
+  );
   const data = await http
     .get<any>(`https://api.aniapi.com/v1/${path}`, {
       params: params,
+      headers: headers,
     })
     .pipe(
       map((data) => ({

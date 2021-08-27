@@ -1,11 +1,12 @@
 @import '../../../styles.sass'
 .mat-card
-  border: 1px solid #54FA3E
+  border: groove 1rem map-get($my-palette-secondary, 200)
+  border-radius: 2rem
   margin-bottom: 2rem
-  margin-top: 25px
+  margin-top: 1rem
 
 .mat-card:hover
-  background-color: map-get($my-palette-accent, 500)
+  background-color: map-get($my-palette-dark, 500)
   color: white
   cursor: pointer
   transform: scale(1.05)

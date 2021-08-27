@@ -1,11 +1,8 @@
-<mat-card >
+<mat-card>
   <mat-card-title>{{ anime.titles.en }}</mat-card-title>
-  <img
-    mat-card-image
-    [src]="anime.cover_image"
-    [routerLink]="['/detalle_anime/', anime.id]"
-  />
+  <img mat-card-image [src]="anime.cover_image" />
   <mat-card-content>
     <div [innerHtml]="description()"></div>
+    <p><strong>Inicio:</strong> {{ formatDate(anime.start_date) }}</p>
   </mat-card-content>
 </mat-card>
