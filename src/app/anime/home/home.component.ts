@@ -32,18 +32,13 @@ export class HomeComponent implements OnInit {
       this.generos = x;
     });
   }
-
-  // navigate(id: number) {
-  //   this.router.navigateByUrl('/detalle_anime/' + id);
-  // }
-
   buscar() {
     const values = this.group.value;
     this.group.valid && this.getAnime(values.title, values.generos);
   }
   public getAnime(title?: string, genres?: string[]) {
     this.loading = true;
-    
+
     let params = new HttpParams()
       .set('page', this.pageIndex + 1)
       .set('per_page', this.pageSize)

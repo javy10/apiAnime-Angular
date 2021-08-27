@@ -21,4 +21,12 @@ export class CardComponent implements OnInit {
     if (!validation(descriptions.it)) return descriptions.it;
     return '';
   }
+
+  formatDate(date: string): string {
+    return new Date(date).toLocaleString('es-ES', {
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+    });
+  }
 }
