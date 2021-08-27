@@ -3,6 +3,18 @@
   <img mat-card-image [src]="anime.cover_image" />
   <mat-card-content>
     <div [innerHtml]="description()"></div>
-    <p><strong>Inicio:</strong> {{ formatDate(anime.start_date) }}</p>
+    <div fxLayout="row nowrap" fxLayoutAlign="space-around">
+      <star-rating
+        [value]="estrellas(anime.score)"
+        [totalstars]="5"
+        checkedcolor="red"
+        uncheckedcolor="black"
+        [readonly]="true"
+      ></star-rating>
+      <p>
+        <strong>{{ getFecha(anime).titulo }}:</strong>
+        {{ getFecha(anime).fecha }}
+      </p>
+    </div>
   </mat-card-content>
 </mat-card>

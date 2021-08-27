@@ -1,11 +1,16 @@
 <div class="menu" fxLayoutAlign="flex-end center" fxHide.xs>
-  <form fxFlex="60%" [formGroup]="group" fxLayoutAlign="space-around center" (ngSubmit)="buscar()">
+  <form
+    fxFlex="60%"
+    [formGroup]="group"
+    fxLayoutAlign="space-around center"
+    (ngSubmit)="buscar()"
+  >
     <div fxFlex.lg="80%" fxLayoutAlign="flex-end">
-      <mat-form-field  color="primary">
+      <mat-form-field color="primary">
         <mat-label>Titulo</mat-label>
         <input type="text" matInput formControlName="title" />
       </mat-form-field>
-      <mat-form-field  color="primary">
+      <mat-form-field color="primary">
         <mat-label>Géneros</mat-label>
         <mat-select formControlName="generos" multiple>
           <mat-option *ngFor="let genero of generos" [value]="genero">
@@ -13,8 +18,16 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field color="primary">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" multiple>
+          <mat-option *ngFor="let s of status; let i = index" [value]="i">
+            {{ s }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-   
+
     <button mat-mini-fab color="accent">
       <mat-icon>search</mat-icon>
     </button>
@@ -29,8 +42,15 @@
     </mat-paginator>
   </div>
 </div>
-<div class="menu" style="height: 7vh;" fxLayoutAlign="center center" fxHide fxHide.xs="false">
-  <mat-icon>theaters </mat-icon> <h1> Animes</h1>
+<div
+  class="menu"
+  style="height: 7vh"
+  fxLayoutAlign="center center"
+  fxHide
+  fxHide.xs="false"
+>
+  <mat-icon color="primary">theaters</mat-icon>
+  <h1>Animes</h1>
 </div>
 
 <div class="container">
@@ -45,13 +65,16 @@
       mode="indeterminate"
     ></mat-progress-spinner>
   </div>
-  <div
-    *ngIf="!loading"
-    fxLayout="row wrap"
-    fxLayoutAlign="center"
-
-  >
-    <div fxFlex="24%" fxFlex.sm="48%" fxFlex.xs="95%" *ngFor="let a of animes">
+  <div *ngIf="!loading" fxLayout="row wrap" fxLayoutAlign="center">
+    <div
+      id="anime"
+      fxFlex="25%"
+      fxFlex.sm="50%"
+      fxFlex.xs="100%"
+      matRipple
+      matRippleColor="primary"
+      *ngFor="let a of animes"
+    >
       <app-card [anime]="a"></app-card>
     </div>
   </div>

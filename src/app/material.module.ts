@@ -31,6 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatAutocompleteModule,
     MatInputModule,
     MatSelectModule,
+    // NgxStarRatingModule,
   ],
 })
 export class MaterialModule {}

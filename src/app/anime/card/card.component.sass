@@ -2,7 +2,6 @@
 .mat-card
   border: groove 1rem map-get($my-palette-accent, 500)
   border-radius: 2rem
-  margin: 10px
   height: 55vh
 
 .mat-card:hover
@@ -21,9 +20,18 @@
 .mat-card img
   object-fit: cover
   height: 60%
-
-.mat-card-content 
-  height: 26%
+.mat-card-content
+  height: 33%
+.mat-card-content div
+  height: 80%
   overflow: auto
-  
+.start-rating
+  width: 25%
+  justify-content: flex-start
+  white-space: nowrap
 
+.mat-card-content p
+  width: 70%
+  // text-overflow: ellipsis
+  overflow: auto
+  white-space: nowrap
