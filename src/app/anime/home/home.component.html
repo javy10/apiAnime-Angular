@@ -1,16 +1,16 @@
 <div class="menu" fxLayoutAlign="flex-end center" fxHide.xs>
   <form
-    fxFlex="60%"
+    fxFlex="70%"
     [formGroup]="group"
     fxLayoutAlign="space-around center"
     (ngSubmit)="buscar()"
   >
-    <div fxFlex.lg="80%" fxLayoutAlign="flex-end">
-      <mat-form-field color="primary">
+    <div fxFlex.lg="80%" fxLayoutAlign="flex-start center">
+      <mat-form-field color="accent">
         <mat-label>Titulo</mat-label>
         <input type="text" matInput formControlName="title" />
       </mat-form-field>
-      <mat-form-field color="primary">
+      <mat-form-field color="accent">
         <mat-label>Géneros</mat-label>
         <mat-select formControlName="generos" multiple>
           <mat-option *ngFor="let genero of generos" [value]="genero">
@@ -18,21 +18,33 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field color="primary">
+      <mat-form-field color="accent">
         <mat-label>Status</mat-label>
         <mat-select formControlName="status" multiple>
-          <mat-option *ngFor="let s of status; let i = index" [value]="i">
-            {{ s }}
+          <mat-option *ngFor="let sta of status; let i = index" [value]="i">
+            {{ sta }}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field color="accent">
+        <mat-label>Ordenar por:</mat-label>
+        <mat-select formControlName="sort_fields" multiple>
+          <mat-option *ngFor="let sf of sortFields" [value]="sf.value">
+            {{ sf.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <mat-checkbox formControlName="sort_direction">
+          lista invertida
+        </mat-checkbox>
+      </div>
     </div>
-
     <button mat-mini-fab color="accent">
       <mat-icon>search</mat-icon>
     </button>
   </form>
-  <div fxFlex="40%">
+  <div fxFlex="30%">
     <mat-paginator
       color="accent"
       [length]="count"
@@ -49,11 +61,10 @@
   fxHide
   fxHide.xs="false"
 >
-  <mat-icon color="primary">theaters</mat-icon>
+  <mat-icon color="primary">subscriptions</mat-icon>
   <h1>Animes</h1>
 </div>
-
-<div class="container">
+<div id="container">
   <div
     *ngIf="loading"
     fxLayout="row"

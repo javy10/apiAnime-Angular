@@ -2,12 +2,16 @@
   <mat-card-title>{{ anime.titles.en }}</mat-card-title>
   <img mat-card-image [src]="anime.cover_image" />
   <mat-card-content>
-    <div [innerHtml]="description()"></div>
+    <div
+      id="description"
+      [innerHtml]="description()"
+      [ngStyle]="{ 'max-height': description().length === 0 ? '0%' : '80%' }"
+    ></div>
     <div fxLayout="row nowrap" fxLayoutAlign="space-around">
       <star-rating
         [value]="estrellas(anime.score)"
         [totalstars]="5"
-        checkedcolor="red"
+        checkedcolor="yellow"
         uncheckedcolor="black"
         [readonly]="true"
       ></star-rating>

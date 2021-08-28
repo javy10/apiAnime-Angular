@@ -7,7 +7,7 @@ import { Anime } from 'src/app/entidades/anime';
   styleUrls: ['./card.component.sass'],
 })
 export class CardComponent implements OnInit {
-  @Input() anime: Anime = {} as Anime;
+  @Input() anime!: Anime;
   constructor() {}
 
   ngOnInit(): void {}
@@ -30,7 +30,6 @@ export class CardComponent implements OnInit {
     });
   }
   estrellas(score: number): number {
-    console.log(score);
     return Math.round(score / 20);
   }
   getFecha(anime: Anime): fecha {

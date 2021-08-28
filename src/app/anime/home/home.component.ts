@@ -25,15 +25,22 @@ export class HomeComponent implements OnInit {
     'No publicado',
     'Cancelado',
   ];
+  sortFields: Array<SORT_FIELDS> = [
+    { title: 'Puntuación', value: 'score' },
+    { title: 'Fecha Inicio', value: 'start_date' },
+    { title: 'Fecha Finalización', value: 'end_date' },
+  ];
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.getAnime();
     this.group = new FormGroup({
       title: new FormControl('', [Validators.maxLength(20)]),
       generos: new FormControl(),
       status: new FormControl([0, 1]),
+      sort_fields: new FormControl([this.sortFields[0].value]),
+      sort_direction: new FormControl(true),
     });
+    this.buscar();
     getGeneros(this.http).subscribe((x) => {
       x.sort();
       this.generos = x;
@@ -42,20 +49,34 @@ export class HomeComponent implements OnInit {
   buscar() {
     const values = this.group.value;
     this.group.valid &&
-      this.getAnime(values.title, values.generos, values.status);
+      this.getAnime(
+        values.title,
+        values.generos,
+        values.status,
+        values.sort_fields,
+        values.sort_direction
+      );
   }
   public getAnime(
     title?: string,
     genres?: string[],
-    status: Array<number> = [0, 1]
+    status?: Array<number>,
+    sort_fields?: Array<string>,
+    sort_direction?: boolean
   ) {
     this.loading = true;
     let params = new HttpParams()
       .set('page', this.pageIndex + 1)
-      .set('per_page', this.pageSize)
-      .set('sort_fields', 'score, start_date')
-      .set('status', status.join(','))
-      .set('sort_directions', '-1, -1');
+      .set('per_page', this.pageSize);
+    status && (params = params.set('status', status.join(',')));
+    sort_fields &&
+      (params = params.set('sort_fields', sort_fields.join(',')).set(
+        'sort_directions',
+        sort_fields
+          .slice()
+          .map((x) => (sort_direction ? -1 : 1))
+          .join(',')
+      ));
     title && (params = params.set('title', title));
     genres && (params = params.set('genres', genres.join(',')));
     getData<Anime>(this.http, 'anime', params)
@@ -74,3 +95,7 @@ export class HomeComponent implements OnInit {
     return event;
   };
 }
+type SORT_FIELDS = {
+  title: string;
+  value: string;
+};

@@ -23,8 +23,10 @@
 .mat-card-content
   height: 33%
 .mat-card-content div
-  height: 80%
   overflow: auto
+.mat-card-content div::-webkit-scrollbar
+  display: none
+
 .start-rating
   width: 25%
   justify-content: flex-start
@@ -32,6 +34,7 @@
 
 .mat-card-content p
   width: 70%
-  // text-overflow: ellipsis
-  overflow: auto
   white-space: nowrap
+
+#description
+  height: 80%
